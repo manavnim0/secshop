@@ -2,12 +2,12 @@ services:
   base_image:
     build: 
       context: .
-      dockerfile: docker/dockerfiles/base.dockerfile
+      dockerfile: utils/docker/dockerfiles/base.dockerfile
     image: secshop/base:latest
   frontend: 
     build: 
       context: .
-      dockerfile: docker/dockerfiles/frontend.dockerfile
+      dockerfile: utils/docker/dockerfiles/frontend.dockerfile
     image: secshop/frontend:latest
     ports:
       - 80:80
