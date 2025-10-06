@@ -1,4 +1,6 @@
-#------ Stage 1: The Builder -------#
+# ----------------------------------------------------------------------
+# 1. BUILD STAGE: Installs dependencies and compiles 
+# ----------------------------------------------------------------------
 FROM secshop/base:latest AS builder
 
 WORKDIR /app
@@ -19,7 +21,10 @@ RUN --mount=type=cache,id=pnpm,target=/tmp/pnpm-store pnpm fetch \
 
 
 RUN pnpm --filter frontend run build
-# ----- Stage 2: The production server ----#
+
+# ----------------------------------------------------------------------
+# 2. PRODUCTION STAGE: Creates a minimal image using your custom base
+# ----------------------------------------------------------------------
 FROM nginx:stable-alpine AS production
 
 COPY --from=builder /app/frontend/dist  /usr/share/nginx/html

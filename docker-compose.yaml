@@ -13,3 +13,12 @@ services:
       - 80:80
     depends_on:
       - base_image
+  product:
+    build:
+      context: .
+      dockerfile:  utils/docker/dockerfiles/product.dockerfile
+    image: secshop/product:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - base_image

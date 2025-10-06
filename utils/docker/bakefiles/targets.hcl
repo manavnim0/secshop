@@ -1,7 +1,7 @@
 #bakefile/targets
 
 group "services" {
-    targets = ["base","frontend"]
+    targets = ["base", "frontend", "product"]
 }
 
 group "default" {
