@@ -1,0 +1,7 @@
+packages:
+  - "docker"
+  - "frontend"
+  - "services"
+syncInjectedDepsAfterScripts:
+  - build
+injectWorkspacePackages: true

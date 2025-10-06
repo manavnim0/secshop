@@ -1,0 +1,15 @@
+{
+  "name": "@secshop/docker",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "execa": "^9.6.0"
+  },
+  "scripts": {
+    "build:images": "node ./scripts/build-images.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
