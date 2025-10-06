@@ -1,8 +1,14 @@
 #bakefile/base
 
 target "base" {
-    context = "utils/docker/dockerfiles/" 
-    dockerfile = "base.dockerfile"
+    context = "." 
+    dockerfile = "utils/docker/dockerfiles/base.dockerfile"
     tags = tags("base") 
 }
 
+target "frontend" {
+    inherits = ["base"]
+    context = "."
+    dockerfile = "utils/docker/dockerfiles/frontend.dockerfile"
+    tags =  tags("frontend")
+}

@@ -20,7 +20,7 @@ RUN --mount=type=cache,id=pnpm,target=/tmp/pnpm-store pnpm fetch \
 
 RUN pnpm --filter frontend run build
 # ----- Stage 2: The production server ----#
-from nginx:stable-alpine AS production
+FROM nginx:stable-alpine AS production
 
 COPY --from=builder /app/frontend/dist  /usr/share/nginx/html
 
