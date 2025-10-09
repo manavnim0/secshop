@@ -13,15 +13,18 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "workspaces":[
-		"docker",
+  "workspaces": [
+    "docker",
     "frontend"
-],
+  ],
   "scripts": {
     "build:images": "pnpm --filter @secshop/docker build:images"
   },
   "packageManager": "pnpm@10.18.0",
-   "engines": {
+  "engines": {
     "node": ">=24.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

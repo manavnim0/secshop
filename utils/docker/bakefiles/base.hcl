@@ -14,7 +14,7 @@ target "frontend" {
 }
 
 target "product" {
-    inherits = ["base"]
+    inherits = ["base"] 
     context = "."
     dockerfile = "utils/docker/dockerfiles/product.dockerfile"
     tags =  tags("product")
