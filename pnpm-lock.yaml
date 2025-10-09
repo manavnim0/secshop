@@ -59,6 +59,25 @@ importers:
         specifier: npm:rolldown-vite@7.1.12
         version: rolldown-vite@7.1.12(@types/node@24.7.0)
 
+  services/auth:
+    dependencies:
+      '@types/express':
+        specifier: ^5.0.3
+        version: 5.0.3
+      '@types/node':
+        specifier: ^24.7.0
+        version: 24.7.0
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
+    devDependencies:
+      ts-node-dev:
+        specifier: ^2.0.0
+        version: 2.0.0(@types/node@24.7.0)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+
   services/product:
     dependencies:
       '@types/cors':

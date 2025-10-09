@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "incremental": true
+  },
+  "references": [
+    {
+        "path": "./services/product/tsconfig.json"
+    },
+    {
+        "path": "./services/auth/tsconfig.json"
+    },
+    {
+        "path": "./frontend/tsconfig.json"
+    }
+  ]
+}

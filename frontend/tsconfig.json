@@ -1,4 +1,10 @@
 {
+  "compilerOptions": {
+    "composite": true,    
+    "outDir": "./dist", 
+    "rootDir": "./src"  
+  },
+  "include": ["src/**/*"],
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
