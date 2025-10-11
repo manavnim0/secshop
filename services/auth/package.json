@@ -5,7 +5,8 @@
     "type": "commonjs",
     "scripts": {
         "dev": "ts-node-dev --respawn src/auth.ts",
-        "build": "tsc"
+        "build": "tsc",
+        "start": "node dist/auth.js "
     },
     "dependencies": {
         "@types/express": "^5.0.3",

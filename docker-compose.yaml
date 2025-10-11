@@ -21,4 +21,14 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - base_image
+      - base_image 
+  auth:
+    build:
+      context: .
+      dockerfile:  utils/docker/dockerfiles/auth.dockerfile
+    image: secshop/auth:latest
+    ports:
+      - 4000:4000
+    depends_on:
+      - base_image 
+      
