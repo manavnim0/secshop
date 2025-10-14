@@ -1,5 +1,16 @@
-import express, {Express} from "express";
+import { Router } from "express";
+import axios from "axios";
 
-export const router: Express = express.Router();
+export const router: Router = Router();
 
 router.get('/', (req, res) => console.log("Auth Router"))
+
+router.post("/login", async (req, res) => {
+    try {
+        const response = await axios.post("/http://auth:3000/login", req.body);
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ error: "Auth service unreachable" });
+        console.log(err)
+    }
+});
