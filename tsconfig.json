@@ -21,6 +21,15 @@
     },
     {
         "path": "./frontend/tsconfig.json"
+    },
+    { 
+      "path": "./common/tsconfig.json"
+    },
+    {
+       "path": "./services/auth/tsconfig.json" 
+    },
+    { 
+      "path": "./services/gateway/tsconfig.json" 
     }
   ]
 }

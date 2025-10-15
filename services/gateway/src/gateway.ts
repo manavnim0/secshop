@@ -2,6 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import { signToken, verifyToken } from "@secshop/common";
 
 import { router as authRouter } from "./routes/auth";
 import { router as productRouter } from "./routes/product";

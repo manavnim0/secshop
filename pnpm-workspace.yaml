@@ -1,8 +1,9 @@
 packages:
   - "docker"
   - "frontend"
-  - "services/*"
-  - "utils/*"
+  - "services*"
+  - "utils/docker"
+  - "common"
 syncInjectedDepsAfterScripts:
   - build
 injectWorkspacePackages: true

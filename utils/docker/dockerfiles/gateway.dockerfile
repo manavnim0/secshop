@@ -1,18 +1,18 @@
 # ============================================================
-# Single-stage build and runtime for Auth service
+# Single-stage build and runtime for Gateway service
 # ============================================================
 FROM secshop/base:latest
 
 WORKDIR /app
 
-COPY services/gateway/package*.json ./
-RUN pnpm install 
+COPY services/gateway/package*.json ./services/gateway/
+COPY services/gateway/tsconfig.json ./services/gateway/
+COPY services/gateway/src ./services/gateway/src
 
-COPY services/gateway/tsconfig.json .
-COPY services/gateway/src ./src
+RUN pnpm install --filter @secshop/gateway
 
-RUN pnpm run build
+RUN pnpm --filter @secshop/gateway run build
 
 EXPOSE 8080
 
-CMD ["node", "dist/gateway.js"]
+CMD ["node", "./services/gateway/dist/gateway.js"]

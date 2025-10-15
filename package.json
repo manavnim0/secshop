@@ -14,8 +14,10 @@
   "author": "",
   "type": "commonjs",
   "workspaces": [
-    "docker",
-    "frontend"
+    "services",
+    "utils",
+    "frontend",
+    "common"
   ],
   "scripts": {
     "build:images": "pnpm --filter @secshop/docker build:images"
