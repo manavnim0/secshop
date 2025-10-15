@@ -5,7 +5,7 @@ FROM secshop/base:latest AS builder
 
 WORKDIR /app
 
-COPY pnpm-workspace.yaml pnpm-lock.yaml ./
+# COPY pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY services/product/package.json ./
 
 # RUN pnpm install --frozen-lockfile

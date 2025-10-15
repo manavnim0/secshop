@@ -5,9 +5,9 @@ FROM secshop/base:latest
 
 WORKDIR /app
 
-COPY pnpm-workspace.yaml ./
-COPY package.json ./
-COPY pnpm-lock.yaml ./
+# COPY pnpm-workspace.yaml ./
+# COPY package.json ./
+# COPY pnpm-lock.yaml ./
 
 COPY services/auth/package.json services/auth/
 

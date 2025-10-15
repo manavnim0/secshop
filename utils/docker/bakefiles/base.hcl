@@ -25,3 +25,9 @@ target "auth" {
     dockerfile = "utils/docker/dockerfiles/auth.dockerfile"
     tags =  tags("auth")
 }
+target "auth" {
+    inherits = ["base"] 
+    context = "."
+    dockerfile = "utils/docker/dockerfiles/gateway.dockerfile"
+    tags =  tags("auth")
+}

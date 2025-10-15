@@ -5,7 +5,7 @@ FROM secshop/base:latest AS builder
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+# COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 COPY frontend/package*.json ./frontend/
 
