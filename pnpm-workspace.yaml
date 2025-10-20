@@ -1,7 +1,7 @@
 packages:
   - "docker"
   - "frontend"
-  - "services*"
+  - "services/*"
   - "utils/docker"
   - "common"
 syncInjectedDepsAfterScripts:

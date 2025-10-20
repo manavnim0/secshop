@@ -3,11 +3,11 @@
 # ============================================================
 FROM secshop/base:latest
 
-WORKDIR /app
+WORKDIR /app/services/gateway
 
-COPY services/gateway/package*.json ./services/gateway/
-COPY services/gateway/tsconfig.json ./services/gateway/
-COPY services/gateway/src ./services/gateway/src
+COPY services/gateway/package*.json .//
+COPY services/gateway/tsconfig.json ./
+COPY services/gateway/src ./src
 
 RUN pnpm install --filter @secshop/gateway
 
@@ -15,4 +15,5 @@ RUN pnpm --filter @secshop/gateway run build
 
 EXPOSE 8080
 
-CMD ["node", "./services/gateway/dist/gateway.js"]
+# CMD ["node", "./services/gateway/dist/gateway.js"]
+CMD ["node", "./dist/gateway.js"]

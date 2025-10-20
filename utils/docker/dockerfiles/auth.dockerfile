@@ -13,8 +13,8 @@ COPY services/auth/package.json services/auth/
 
 RUN pnpm install --frozen-lockfile --filter @secshop/auth...
 
-COPY tsconfig.json ./
-COPY tsconfig.base.json ./
+# COPY tsconfig.json ./
+# COPY tsconfig.base.json ./
 COPY services/auth/tsconfig.json services/auth/
 COPY services/auth/src services/auth/src
 
