@@ -4,14 +4,25 @@
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "build": "tsc -b"
+    "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
-    "jsonwebtoken": "^9.0.2"
+    "cookie-session": "^2.0.0",
+    "express": "^5.1.0",
+    "joi": "^18.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.9.2"
+    "@types/cookie-session": "^2.0.46",
+    "@types/express": "^5.0.3",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/uuid": "^11.0.0",
+    "typescript": "^5.6.3"
   }
 }

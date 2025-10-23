@@ -1,0 +1,55 @@
+{
+  "group": {
+    "default": {
+      "targets": [
+        "services"
+      ]
+    },
+    "services": {
+      "targets": [
+        "base",
+        "frontend",
+        "product",
+        "auth",
+        "gateway"
+      ]
+    }
+  },
+  "target": {
+    "auth": {
+      "context": "../..",
+      "dockerfile": "utils/docker/dockerfiles/auth.dockerfile",
+      "tags": [
+        "secshop/auth:latest"
+      ]
+    },
+    "base": {
+      "context": "../..",
+      "dockerfile": "utils/docker/dockerfiles/base.dockerfile",
+      "tags": [
+        "secshop/base:latest"
+      ]
+    },
+    "frontend": {
+      "context": "../..",
+      "dockerfile": "utils/docker/dockerfiles/frontend.dockerfile",
+      "tags": [
+        "secshop/frontend:latest"
+      ]
+    },
+    "gateway": {
+      "context": "../..",
+      "dockerfile": "utils/docker/dockerfiles/gateway.dockerfile",
+      "tags": [
+        "secshop/gateway:latest"
+      ]
+    },
+    "product": {
+      "context": "../..",
+      "dockerfile": "utils/docker/dockerfiles/product.dockerfile",
+      "tags": [
+        "secshop/product:latest"
+      ]
+    }
+  }
+}
