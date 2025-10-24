@@ -11,16 +11,13 @@ COPY frontend/package*.json ./frontend/
 
 COPY frontend ./frontend/
 
-RUN chown -R appuser:appgroup /app
-
-
-USER appuser
+USER root
 
 RUN --mount=type=cache,id=pnpm,target=/tmp/pnpm-store pnpm fetch \
     && pnpm install --filter frontend --prod=false
 
 
-RUN pnpm --filter frontend run build
+RUN pnpm --filter frontend run build 
 
 # ----------------------------------------------------------------------
 # 2. PRODUCTION STAGE: Creates a minimal image using your custom base
@@ -28,7 +25,6 @@ RUN pnpm --filter frontend run build
 FROM nginx:stable-alpine AS production
 
 COPY --from=builder /app/frontend/dist  /usr/share/nginx/html
-
 
 EXPOSE 80
 

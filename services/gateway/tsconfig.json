@@ -1,6 +1,7 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "es2024",
     "module": "commonjs",
     "rootDir": "src",
     "outDir": "dist",
@@ -11,7 +12,9 @@
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "composite": true
+    "composite": true,
+    "typeRoots": [ "../node_modules/@types" ]
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

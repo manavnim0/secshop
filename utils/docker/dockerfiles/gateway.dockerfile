@@ -3,17 +3,14 @@
 # ============================================================
 FROM secshop/base:latest
 
+WORKDIR /app
+
+COPY services/gateway ./services/gateway
+
 WORKDIR /app/services/gateway
 
-COPY services/gateway/package*.json .//
-COPY services/gateway/tsconfig.json ./
-COPY services/gateway/src ./src
-
-RUN pnpm install --filter @secshop/gateway
-
+RUN pnpm install --frozen-lockfile --filter @secshop/gateway...
 RUN pnpm --filter @secshop/gateway run build
 
-EXPOSE 8080
-
-# CMD ["node", "./services/gateway/dist/gateway.js"]
+EXPOSE 4000
 CMD ["node", "./dist/gateway.js"]

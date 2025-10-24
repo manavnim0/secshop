@@ -3,16 +3,22 @@
     "target": "ES2020",
     "module": "CommonJS",
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "composite": true
+    "composite": true,
+    "typeRoots": [ "../node_modules/@types" ]
   },
     "exclude": [
     "node_modules",
     "dist",
     "**/*.test.ts",
     "__tests__"
+  ],
+  "include": [
+    "models/**/*",
+    "src/**/*", // Should include src/models/user.ts
+    "src/types/**/*.d.ts" // To include the new session.d.ts
   ]
 }

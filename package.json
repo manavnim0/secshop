@@ -20,7 +20,7 @@
     "common"
   ],
   "scripts": {
-    "build": "pnpm -r run build", 
+    "build": "pnpm -r run build",
     "build:images": "pnpm --filter @secshop/docker build:images"
   },
   "packageManager": "pnpm@10.18.0",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/uuid": "^11.0.0",
     "@types/winston": "^2.4.4",
+    "express-async-error": "^0.0.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {

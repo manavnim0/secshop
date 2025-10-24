@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const router: Router = Router();
 
-router.get('/', (req, res) => console.log("Auth Router"))
+router.get('/', (_req, _res) => console.log("Auth Router"))
 
 router.post("/login", async (req, res) => {
     try {
@@ -13,4 +13,5 @@ router.post("/login", async (req, res) => {
         res.status(500).json({ error: "Auth service unreachable" });
         console.log(err)
     }
+
 });
