@@ -12,10 +12,7 @@ services:
     image: secshop/frontend:latest
     ports:
       - 80:80
-    mem_limit: 512m
-    cpus: 0.5
-    depends_on:
-      - base_image
+    mem_limit: 251m
 
   product:
     build:
@@ -23,11 +20,8 @@ services:
       dockerfile:  utils/docker/dockerfiles/product.dockerfile
     image: secshop/product:latest
     ports:
-      - 3000:3000
-    depends_on:
-      - base_image 
-    mem_limit: 512m
-    cpus: 0.5
+      - 4002:4002
+    mem_limit: 200m
 
   auth:
     build:
@@ -39,22 +33,33 @@ services:
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - NODE_ENV=${NODE_ENV}
-    depends_on:
-      - base_image 
-    mem_limit: 512m
-    cpus: 0.5
-
+    mem_limit: 200m
   gateway:
     build:
       context: .
       dockerfile: utils/docker/dockerfiles/gateway.dockerfile
     image: secshop/gateway:latest
     ports:
-      - 8080:8080
+      - 8080:4000
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - NODE_ENV=${NODE_ENV}
     depends_on:
-      - base_image
-    mem_limit: 512m
-    cpus: 0.5
+      - auth
+    mem_limit: 200m
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DB_DATABASE}
+      - MONGO_URI=${MONGO_URI}
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

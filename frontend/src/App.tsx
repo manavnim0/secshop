@@ -7,7 +7,7 @@ export default function App() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products').then(r => setProducts(r.data.data))
+    axios.get('http://localhost:4002/products').then(r => setProducts(r.data.data))
       .catch(() => setProducts([]))
   }, []);
 

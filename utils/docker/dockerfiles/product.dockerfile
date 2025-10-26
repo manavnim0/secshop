@@ -15,6 +15,6 @@ WORKDIR /app/services/product
 
 RUN pnpm run build 
 
-EXPOSE 3000
+EXPOSE 4002
 
 CMD ["pnpm", "run", "start"]

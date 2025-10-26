@@ -3,18 +3,19 @@
   "compilerOptions": {
     "target": "es2024",
     "module": "commonjs",
-    "rootDir": "src",
     "outDir": "dist",
-    "strict": true,
+    "rootDir": "src",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "composite": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,      // <-- Add this
+    "declarationMap": true,
     "typeRoots": [ "../node_modules/@types" ]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

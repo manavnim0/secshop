@@ -15,6 +15,7 @@
     { "path": "./services/auth/tsconfig.json" },
     { "path": "./services/product/tsconfig.json" },
     { "path": "./services/gateway/tsconfig.json" },
-    { "path": "./frontend/tsconfig.json" }
+    { "path": "./frontend/tsconfig.json" },
+    { "path": "./services/mongo/tsconfig.json"}
   ]
 }

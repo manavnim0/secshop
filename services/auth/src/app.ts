@@ -14,9 +14,15 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== "test",
+    // secure: process.env.NODE_ENV !== "test",
+    secure: false,
   })
 );
+
+
+app.get("/health", (req, res) => {
+        res.status(200).json({ status: "auth service healthy"});
+})
 
 // app.use(currentUser);
 app.use(signinRouter);
@@ -25,7 +31,7 @@ app.use(signoutRouter);
 app.use(currentUserRouter);
 
 // If route not found
-app.all("/", async () => {
+app.all("/*", async () => {
   throw new NotFoundError();
 });
 

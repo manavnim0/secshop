@@ -7,7 +7,7 @@ router.get('/', (_req, _res) => console.log("Auth Router"))
 
 router.post("/login", async (req, res) => {
     try {
-        const response = await axios.post("/http://auth:3000/login", req.body);
+        const response = await axios.post("/http://auth:4001/login", req.body);
         res.json(response.data);
     } catch (err) {
         res.status(500).json({ error: "Auth service unreachable" });

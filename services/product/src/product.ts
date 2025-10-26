@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4002
 
 type Product = { id: string; name: string; price: number; };
 
