@@ -31,7 +31,7 @@ app.use(signoutRouter);
 app.use(currentUserRouter);
 
 // If route not found
-app.all("/*", async () => {
+app.use(async (req, res) => {
   throw new NotFoundError();
 });
 

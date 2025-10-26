@@ -33,7 +33,10 @@ services:
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - NODE_ENV=${NODE_ENV}
+      - MONGO_URI=mongodb://root:example@mongo:27017/auth?authSource=admin
     mem_limit: 200m
+    depends_on:
+      - mongo
   gateway:
     build:
       context: .
@@ -52,10 +55,11 @@ services:
     container_name: mongo
     restart: always
     ports:
-      - "27017:27017"
+      - 27017:27017
+      - 4005:4005
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
       - MONGO_INITDB_DATABASE=${DB_DATABASE}
       - MONGO_URI=${MONGO_URI}
     volumes:
