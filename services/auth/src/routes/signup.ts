@@ -1,40 +1,51 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Router } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { validateRequest, BadRequestError } from "@secshop/common";
-import { User } from "@secshop/mongo"; // <-- your Mongo model
+import { User } from "@secshop/db"; // <-- your Mongo model
 
-const router = express.Router();
+const router: Router = express.Router();
 
-router.post(
-  "/signup",
-  [
-    body("email").isEmail().withMessage("Email must be valid"),
-    body("password").trim().isLength({ min: 4, max: 20 }).withMessage("Password must be 4–20 chars"),
-  ],
-  validateRequest,
-  async (req: Request, res: Response) => {
-    const { email, password } = req.body;
+router.post("/signup", async (req, res) =>{
+  const { email } = req.body;
+  console.log("Signup request received:", email);
+  return res.status(201).json({ ok: true });
+})
 
-    console.log("[AUTH] Received signup request", email); // <--- add this
+// router.post(
+//   "/signup",
+//   // Keep validation commented out for this testw
+//   async (req: Request, res: Response) => {
+//     const { email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      console.log("[AUTH] User exists:", email);
-      throw new BadRequestError("Email in use");
-    }
+//     console.log("1. [SIGNUP] Handler started for:", email); // <-- LOG 1
 
-    const hashed = await bcrypt.hash(password, 10);
-    const user = await User.create({ email, password: hashed });
+//     try {
+//       const existingUser = await User.findOne({ email });
 
-    const userJwt = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET!);
+//       console.log("2. [SIGNUP] Database query finished."); // <-- LOG 2
 
-    req.session = { jwt: userJwt };
+//       if (existingUser) {
+//         console.log("[SIGNUP] User already exists:", email);
+//         throw new BadRequestError("Email in use");
+//       }
 
-    console.log("[AUTH] Created user:", user.email);
-    res.status(201).send(user);
-  }
-);
+//       const hashed = await bcrypt.hash(password, 10);
+//       const user = await User.create({ email, password: hashed });
+
+//       const userJwt = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET!);
+//       req.session = { jwt: userJwt };
+
+//       console.log("3. [SIGNUP] User created successfully:", user.email);
+//       res.status(201).send(user);
+
+//     } catch (err) {
+//       console.error("!!! [SIGNUP] AN ERROR OCCURRED:", err);
+//       // Re-throw the error to be handled by your global errorHandler
+//       throw err;
+//     }
+//   }
+// );
 
 export { router as signupRouter };

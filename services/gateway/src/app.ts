@@ -11,15 +11,17 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("dev"));
 app.set("trust proxy", true);
-app.use(currentUser); // adds req.currentUser if JWT valid
 
 // --- Gateway health check ---
 app.get("/health", (_req, res)=>{
   res.status(200).json({status:"gateway server healthy"});
 })
 
-// --- This middleware reads the JWT ---
-app.use(currentUser);
+// --- debug helper Middleware ---
+app.use((req, _res, next) => {
+  console.log(`🛰️ Incoming Request → ${req.method} ${req.originalUrl}`)
+  next();
+})
 
 // --- Auth Service Proxy ---
 app.use(
@@ -28,12 +30,26 @@ app.use(
     target: "http://auth:4001",
     changeOrigin: true,
     pathRewrite: { "^/api/auth": "/" },
+    logLevel: "debug", // enables proxy-level logs
+    onProxyReq(proxyReq, req) {
+      console.log(`➡️  Forwarding to Auth Service: ${req.method} ${req.originalUrl}`);
+      console.log(`   Headers:`, JSON.stringify(req.headers, null, 2));
+    },
+    onProxyRes(proxyRes, req, res) {
+      console.log(`✅ Auth Service responded with status ${proxyRes.statusCode} for ${req.method} ${req.originalUrl}`);
+    },
     onError(err, _req, res) {
-      console.error("Auth proxy error:", err);
+      console.error("❌ Auth proxy error:", err.message);
       res.writeHead(502);
       res.end("Bad Gateway");
-    }
-  } as any)
+    },
+    } as any)
+  //   onError(err, _req, res) {
+  //     console.error("Auth proxy error:", err);
+  //     res.writeHead(502);
+  //     res.end("Bad Gateway");
+  //   }
+  // } as any)
 );
 
 // --- Product Service Proxy ---
@@ -51,28 +67,31 @@ app.use(
   } as any)
 );
 
+app.use(currentUser);
+
+
 // --- JWT Middleware ---
 
 // app.use((req: Request, res: Response, next: NextFunction)) => {
-//     if(req.path.startsWith("/auth")) return next();
-//     const authHeader = req.headers.authorization;
-//     if (!authHeader || !authHeader.startsWith("Bearer")){
-//         throw new NotAuthorizedError();
-//     }
-
-//     const token = authHeader.split(" ")[1];
-//     try {
+  //     if(req.path.startsWith("/auth")) return next();
+  //     const authHeader = req.headers.authorization;
+  //     if (!authHeader || !authHeader.startsWith("Bearer")){
+    //         throw new NotAuthorizedError();
+    //     }
+    
+    //     const token = authHeader.split(" ")[1];
+    //     try {
 //         const payload = jwt.verify(token, process.env.JWT_SECRET!);
 //         (req as any).user = payload;
 //         next();
 //     } catch(
-//         throw new NotAuthorizedError();
-//     )
-// }
-
-// --- Fallback ---
-app.use("/", (_req, res) => res.status(404).send({ message: "Route not found" }));
-
-app.use(errorHandler);
-
+  //         throw new NotAuthorizedError();
+  //     )
+  // }
+  
+  // --- Fallback ---
+  app.use("/", (_req, res) => res.status(404).send({ message: "Route not found" }));
+  
+  app.use(errorHandler);
+  
 export { app }
